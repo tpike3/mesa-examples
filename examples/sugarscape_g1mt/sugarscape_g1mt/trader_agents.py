@@ -139,16 +139,20 @@ class Trader(mesa.Agent):
 
         return (self.sugar <= 0) or (self.spice <= 0)
 
-    def calculate_MRS(self):
-        """
-        Helper function for self.trade()
+    def calculate_MRS(self, sugar=None, spice=None):
+        '''
+        Helper function for:
+         self.trade()
+         self.maybe_sell_spice()
 
-        Determines what trader agent is needs and can give up
-        """
+        Determines what trader agent needs and can give up
+        '''
+        if sugar == None:
+            sugar = self.sugar
+        if spice == None:
+            spice = self.spice
 
-        return (self.spice / self.metabolism_spice) / (
-            self.sugar / self.metabolism_sugar
-        )
+        return (spice / self.metabolism_spice) / (sugar / self.metabolism_sugar)
 
     def calculate_sell_spice_amount(self, price):
         """
@@ -205,7 +209,7 @@ class Trader(mesa.Agent):
         ) and (welfare_other < other.calculate_welfare(other_sugar, other_spice))
 
         # trade criteria #2 is their mrs crossing
-        mrs_not_crossing = self.calculate_MRS() > other.calculate_MRS()
+        mrs_not_crossing = self.calculate_MRS(self_sugar, self_spice) > other.calculate_MRS(other_sugar, other_spice)
 
         if not (both_agents_better_off and mrs_not_crossing):
             return False

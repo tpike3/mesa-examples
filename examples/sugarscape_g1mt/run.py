@@ -89,14 +89,13 @@ else:
         "width": 50,
         "height": 50,
         "vision_min": range(1, 3),
-        "metabolism_max": [3, 5],
+        "metabolism_max": [3,5],
     }
 
     results_batch = mesa.batch_run(
         SugarscapeG1mt,
         parameters=params,
-        iterations=1,
-        number_processes=1,
+        iterations=3,
         data_collection_period=1,
         display_progress=True,
     )
