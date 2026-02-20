@@ -44,8 +44,8 @@ def DiningTable(model):
         )
     )
 
-    for agent in model.grid.get_all_cell_contents():
-        node_id = agent.pos
+    for agent in model.grid.agents:
+        node_id = agent.cell.coordinate
         x, y = pos[node_id]
 
         # Map (-1, 1) to (50, 350)
@@ -151,10 +151,9 @@ def SpaghettiBarChart(model):
     # We want them sorted by ID (position)
 
     philosophers = []
-    # Access internal agent storage for efficiency or just filter grid
-    # model.philosophers is an AgentSet which is iterable
-
-    philosophers = sorted(model.philosophers, key=lambda p: p.position)
+    philosophers = sorted(
+        model.agents_by_type[PhilosopherAgent], key=lambda p: p.position
+    )
 
     labels = [f"P{p.position // 2}" for p in philosophers]
     values = [p.total_eaten for p in philosophers]
