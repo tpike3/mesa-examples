@@ -89,6 +89,13 @@ A simple agent-based simulation showing how rumors spread through a population b
 
 An implementation of Axelrod's model of cultural dissemination. Agents on a grid hold multi-feature cultural profiles and interact with neighbors based on cultural similarity, producing emergent cultural regions. Demonstrates how local convergence and global polarization can coexist.
 
+### [Pathogen Outbreak Model](https://github.com/mesa/mesa-examples/tree/main/examples/pathogen_outbreak)
+
+A fast-spreading pathogen outbreak model with no exposed/latency period
+inspired loosely from the game Plague Inc, though the goal here is containment rather than world domination. The model simulates how quarantine
+compliance rates at the population level affect outbreak dynamics,
+analyzing changes in infection, death and immunity rates.
+
 
 ## Continuous Space Examples
 _No user examples available yet._
